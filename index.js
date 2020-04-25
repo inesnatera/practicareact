@@ -5,10 +5,14 @@ import './style.css';
 
 
 function MiComponente(){
-  return <p>Hola este es mi primer componente </p>
+  return <p>Hola este es mi primer componente funcional </p>
 }
 
-
+class MiComponenteDeClase extends Component{
+  render(){
+    return <p>Hola este es mi primer componente de clase. Su principal caracteristica es que posee un metodo <b>render()</b> </p>
+  }
+}
 
 
 class App extends Component {
@@ -22,10 +26,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
+        <MiComponente/>
+        <MiComponenteDeClase/>
       </div>
     );
   }
