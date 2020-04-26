@@ -22,10 +22,39 @@ class MiComponenteDeClase extends Component{
 
 function MiComponenteConProps(props){
  //console.log(props.children)
-  return props.children
-  /*<p>Props: UN {props.nombre} PADRE PASA INFORMACION A UN {props.nombre} HIJO Nota: un componente no puede modificar sus propias props solo las puede.Son "Read Only"</p>*/
+  return <p>Props: UN {props.nombre} PADRE PASA INFORMACION A UN {props.nombre} HIJO Nota: un componente no puede modificar sus propias props solo las puede.Son "Read Only"</p>
 }
 
+class Contador extends Component{
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      contador: 0
+    };
+  }
+
+  aumentarContador = ()=> {
+    this.setState({
+        contador: 
+        this.state.contador + 1
+      }
+    )
+  }
+
+  render(){
+
+    return ( 
+     <div>
+     
+     <p>El contador es igual a: {this.state.contador}</p>
+      <button onClick={this.aumentarContador} > Aumentar </button>
+     </div>
+      
+      )
+  }
+}
 class App extends Component {
   constructor() {
     super();
@@ -37,12 +66,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <MiComponente/>
-        <MiComponenteDeClase/>
-        <MiComponenteConProps>
-          <p> hola soy un hijo </p> 
-          <p> hola soy un hijo {2+2} </p> 
-        </MiComponenteConProps>
+       <Contador/>
       </div>
     );
   }
