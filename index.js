@@ -3,58 +3,45 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
  
-// variables
-let nombre = 'Componente'
-//Practica 1
 
-function MiComponente(){
-  return <p>Hola este es mi primer componente funcional </p>
-}
 
-class MiComponenteDeClase extends Component{
+class Formulario extends Component{
+ constructor (props){
+   super(props);
+   this.state = {
+     email: '',
+     password: ''
+   }
+
+ }
+
+
+ syscChanges (value,property){
+   let state = {};
+   state[property] = value
+   this.setState(state)
+  
+ }
+
+ submitForm = ()=> {
+  
+  console.log(this.state)
+ }
+ 
   render(){
-    return <p>Hola este es mi primer componente de clase. Su principal caracteristica es que posee un metodo <b>render()</b> </p>
+    return <form>
+      <input onChange={(ev) => {this.syscChanges(ev.target.value,'email')}}  type="email" value={this.state.email} placeholder="Email"/>
+
+       <input onChange={(ev) => {this.syscChanges(ev.target.value,'password')}}  type="password" value={this.state.password} placeholder="******"/>
+
+        <input type="submit" onClick={this.submitForm} value="Iniciar Sesion"  />
+       
+    </form>
   }
 }
 
-//Practica 2 - Props
-//Aplicando el principio de Independencia dentro de react
 
-function MiComponenteConProps(props){
- //console.log(props.children)
-  return <p>Props: UN {props.nombre} PADRE PASA INFORMACION A UN {props.nombre} HIJO Nota: un componente no puede modificar sus propias props solo las puede.Son "Read Only"</p>
-}
 
-class Contador extends Component{
-
-  constructor(props){
-    super(props);
-
-    this.state = {
-      contador: 0
-    };
-  }
-
-  aumentarContador = ()=> {
-    this.setState({
-        contador: 
-        this.state.contador + 1
-      }
-    )
-  }
-
-  render(){
-
-    return ( 
-     <div>
-     
-     <p>El contador es igual a: {this.state.contador}</p>
-      <button onClick={this.aumentarContador} > Aumentar </button>
-     </div>
-      
-      )
-  }
-}
 class App extends Component {
   constructor() {
     super();
@@ -66,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <div>
-       <Contador/>
+        <Formulario/>
       </div>
     );
   }
